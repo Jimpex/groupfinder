@@ -6,23 +6,25 @@ const dataName = './data.json'
 let data = require(dataName);
 const groupsName = './groups.txt'
 //let groups = require(groupsName);
+
 let i = data.index
 let found = data.found
-console.log(i, found);
 
 let errorTimeout = false
 let running = 0
 const maxRunning = 20;
 
 function check() {
-   if (errorTimeout == true || running >= maxRunning) return setTimeout(check, Math.round(Math.random() * 100));
+   if (errorTimeout || running >= maxRunning) return setTimeout(check, Math.round(Math.random() * 100));
    //console.log(running);
-   //console.log('test');
 
    running++
-   //console.log(`http://groups.roblox.com/v1/groups/${i}`);
+   // console.log(running);
    axios.get(`https://groups.roblox.com/v1/groups/${i}`).then(resp => {
-      console.log('test');
+      if (resp.data.id == null) {
+         i++
+         console.log('Group does not exist');
+      };
       let text = ""
       let locked = false
       if (resp.data.publicEntryAllowed == true) {
@@ -59,15 +61,14 @@ function check() {
       running--
       i++
    }).catch(err => {
+      if (err.response.data.errors[0].message == 'Group is invalid or does not exist.') return i++;
       //console.error('request error');
-      //console.log(err);
       errorTimeout = true
-      const process = require('process');
-      process.exit();
-      errorTimeout
 
       function enable() {
-         //const proces = false
+         const process = require('process');
+         process.exit();
+         errorTimeout = false
          running--
       }
 
@@ -87,5 +88,4 @@ function check() {
 //    const delay = Math.round(Math.random() * 1000);
 //    setTimeout(check, delay);
 // }
-//setInterval(check, 1050);
-check();
+setInterval(check, 50);

@@ -27,12 +27,12 @@ fs.readFile('groups.txt', 'utf8', (err, data) => {
       //    console.log(groupArray[0])
       // }
    });
-   console.log(groupArray.length);
+   //console.log(groupArray.length);
    groupArray.sort((a, b) => {
       //console.log(a, b);
       return a.members - b.members
    });
-   let amount = 100
+   let amount = 10
    let sortedGroups = []
    for (index = 0; index < amount; index++) {
       sortedGroups.push(groupArray[groupArray.length - 1 - index]);
@@ -40,7 +40,7 @@ fs.readFile('groups.txt', 'utf8', (err, data) => {
    fs.writeFile('./sortedGroups.json', JSON.stringify(sortedGroups), (err) => {
       console.log('done');
    })
-   console.log(groupArray[groupArray.length - 2])
+   //console.log(groupArray[groupArray.length - 2])
    //console.log(lines.length, lines[0]);
 
    //console.log(data);
