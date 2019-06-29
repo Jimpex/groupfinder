@@ -1,0 +1,11 @@
+{
+  "name": "",
+  "version": "",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chalk": "^2.4.2",
+    "forever": "^1.0.0",
+    "fs": "0.0.1-security",
+    "request": "^2.88.0"
+  }
+}
