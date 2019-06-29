@@ -1,6 +1,7 @@
 const axios = require('axios');
 const chalk = require('chalk');
 const fs = require('fs');
+//1350429
 
 const dataName = './data.json'
 let data = require(dataName);
@@ -61,8 +62,8 @@ function check() {
       running--
       i++
    }).catch(err => {
-      if (err.response.data.errors[0].message == 'Group is invalid or does not exist.') return i++;
-      //console.error('request error');
+      if (err.response.data.errors[0].message == 'Group is invalid or does not exist.') return i++ & running-- && console.log(`Group invalid/does not exist ${i}`);
+      console.error('request error', i);
       errorTimeout = true
 
       function enable() {
@@ -88,4 +89,4 @@ function check() {
 //    const delay = Math.round(Math.random() * 1000);
 //    setTimeout(check, delay);
 // }
-setInterval(check, 50);
+setInterval(check, 40);
