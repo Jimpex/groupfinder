@@ -32,10 +32,10 @@ fs.readFile('groups.txt', 'utf8', (err, data) => {
       //console.log(a, b);
       return a.members - b.members
    });
-   let amount = 100
+   let amount = 15
    let sortedGroups = []
    for (index = 0; index < amount; index++) {
-      sortedGroups.push(groupArray[index - 1]); //groupArray.length - 1 - index]);
+      sortedGroups.push(groupArray[groupArray.length - 1 - index]);
    }
    fs.writeFile('./sortedGroups.json', JSON.stringify(sortedGroups), (err) => {
       console.log('done');

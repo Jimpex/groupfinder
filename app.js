@@ -13,7 +13,7 @@ let found = data.found
 
 let errorTimeout = false
 let running = 0
-const maxRunning = 20;
+const maxRunning = 5;
 
 function check() {
    if (errorTimeout || running >= maxRunning) return setTimeout(check, Math.round(Math.random() * 100));
@@ -89,4 +89,4 @@ function check() {
 //    const delay = Math.round(Math.random() * 1000);
 //    setTimeout(check, delay);
 // }
-setInterval(check, 40);
+setInterval(check, 1);
